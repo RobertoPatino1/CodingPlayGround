@@ -6,6 +6,14 @@ void main() {
   String lastName = "Gosling";
   int age = 42;
 
+  print("One of my favourite actors is " +
+      firstName +
+      " " +
+      lastName +
+      ".\nHe is " +
+      age.toString() +
+      " years old\n");
+
   //We can also declare variables
   //Its not mandatory to use "?"
   late double salary; //We have to asing the value later in the code
