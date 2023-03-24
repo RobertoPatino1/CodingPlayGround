@@ -6,15 +6,20 @@ void main() {
   String lastName = "Gosling";
   int age = 42;
 
+  //We can also declare variables
+  //Its not mandatory to use "?"
+  late double salary; //We have to asing the value later in the code
+  salary = 2000.50;
+
+  //We can use final/const modifier to declare constants
+  const double PI = 3.14;
+  final GRAVITY = 9.8;
+
   //Lists can contain various data types!
   var movies = ['Drive', 'Blade Runner 2049', 'Barbie'];
 
-  //
+  //We also have dictionaries
   var score = {'Drive': 89, 'Blade Runner 2049': 97, 'Barbie': 100};
-
-  // for (int i = 0; i < movies.length; i++) {
-  //   print(movies[i]);
-  // }
 
   print(score['Drive']);
 }
