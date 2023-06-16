@@ -19,3 +19,12 @@ button{
     background-color: rgb(255, 255, 255);
     border-radius: 2px;
 }
+
+#navbar{
+    background-color:blueviolet;
+
+}
+
+.nav-item:hover{
+    color: black;
+}
