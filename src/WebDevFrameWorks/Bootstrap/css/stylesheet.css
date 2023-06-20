@@ -18,11 +18,21 @@ button{
     border-radius: 2px;
 }
 
-#navbar{
+.navbar{
     background-color:blueviolet;
-
+}
+.navbar-light{
+    background-color:blueviolet;
 }
 
 .nav-item:hover{
     color: black;
+}
+
+.box{
+    background-color: aqua;
+}
+
+.box p{
+    color:black
 }
