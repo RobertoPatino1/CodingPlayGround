@@ -58,4 +58,131 @@ const person = {
 }
 
 
-console.log(person)
+console.log(person.firstName.length)
+console.log(person.firstName)
+let number = '12312313';
+
+number = parseFloat(number)
+
+console.log(typeof number)
+
+console.log(number);
+
+
+//Arrays
+let array1 = ["John","Doe","Jenna","Doe",saluteWithReturn("Bob")]   //Functions can also be passed to arrays
+
+console.log(array1)
+
+let length = array1.length; //Remember: length is not a function but a property!!!
+
+console.log("The length of the array1 is: "+length);
+
+//Using the forEach function
+console.log(array1.forEach(salute));    //By passing it a callback function it executes the function for each value of the array. You dont need to pass the elements as arguments
+
+//Remember, you acces objects using named indexes, whereas arrays use number indexes to be accessed
+
+//Watch out: By using delete on array element, the space of that element becomes undefined. To avoid this behaviour use the pop function
+
+console.log(array1.toString());
+
+
+
+
+
+/*
+IF-ELSE Statements
+*/
+
+if(20>18){
+    console.log("Yes");
+}else{
+    console.log("No");
+}
+
+
+//looping with for-in
+
+for(let key in person){
+    console.log(person[key]);
+}
+
+for(let value of array1){
+    console.log(value);
+}
+
+//Looping over a String
+for(let char of "Hello world"){
+    console.log(char);
+}
+
+
+
+/*
+-----Arrow Functions-----
+1. They let us write shorter function syntax
+2. They are also known as fat arrow functions, cause of the "=>"
+3. They can be declared as a variable
+4. In order to transform a function into an arrow function, you need to remove the function keyword
+because it is assumed. Then you need to asign it to a variable
+
+The arrow separates the function parameters from the function body
+
+Syntax:
+
+let variableName = (param1,param2,...) => {     //Note: Parenthesis are optional when the function only has 1 parameter!!!
+    block of code for the function
+}
+
+Parenthesis are mandatory when the function has no parameters
+
+How do we call the function???
+variableName(parameters)
+*/
+
+let sum = (a,b) => {
+    return a+b
+}
+
+let greet = () => "Hi!"
+
+console.log(sum(2,3));
+console.log(greet())
+document.addEventListener('click',() => console.log("Click"));
+
+
+//Classes
+
+class Person{
+    //To declare a constructor we use the constructor keyword
+    constructor(firstName,lastName,age){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+    }
+    //Class methods DO NOT use the function keyword
+    salute(){
+        console.log("Hi, my name is: "+this.firstName);
+    }
+}
+
+
+//To create an object we use the new keyword, like in Java
+let person1 = new Person("Roberto","Patino",21)
+
+person1.salute()
+
+
+
+
+//JSON
+
+//We can convert JSON text into a JS object using the JSON.parse function
+let jsonText = '{ "employees" : [' +
+'{ "firstName":"John" , "lastName":"Doe" },' +
+'{ "firstName":"Anna" , "lastName":"Smith" },' +
+'{ "firstName":"Peter" , "lastName":"Jones" } ]}';
+let jsonObject = JSON.parse(jsonText)
+
+console.log(jsonObject);
