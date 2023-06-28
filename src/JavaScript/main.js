@@ -188,42 +188,120 @@ If the function is to return something, then you need to store the function in a
 
 let getNumber = (function (n1) {
   let n = 10;
-  return n+n1;
-})(4)
-
+  return n + n1;
+})(4);
 
 console.log(getNumber);
-
 
 /*
 Callbacks!!!
 - A callback is a function passed as an argument to another function
+Where to use them??-->On asynchronous functions
 */
 
 //Example of a callback function that creates an array with only the positive numbers of the given array
 
-
-
-//Declaring callback function
-
-
-myArray = [1,6,-2,3,-21,-3,-1,123]
-
-
-
-
-
-let resultArray = removeNegatives(myArray,(x) => x>=0);
+myArray = [1, 6, -2, 3, -21, -3, -1, 123];
+let resultArray = removeNegatives(myArray, (x) => x >= 0); //Declaring callback function as an arrow function passed as a parameter
 
 console.log(resultArray);
 
-
-function removeNegatives(array,callback){
-    let returnArray = []
-    for(number of array){
-        if(callback(number)){
-            returnArray.push(number);
-        }
+function removeNegatives(array, callback) {
+  let returnArray = [];
+  for (number of array) {
+    if (callback(number)) {
+      returnArray.push(number);
     }
-    return returnArray;
+  }
+  return returnArray;
 }
+
+/*
+Asynchronous???
+Functions running in parallel with other functions are called asynchronous
+*/
+
+
+
+/*
+DOM
+*/
+document.getElementById("mainTittle").innerHTML = "Hola mundo";
+
+//Printing the value of using each DOM function
+
+let elementByID = document.getElementById("mainTittle");
+let elementsByTagName = document.getElementsByTagName("p"); //This returns an array
+let elementsByClassName = document.getElementsByClassName("randomClass")  //This also returns an array
+
+
+console.log(elementByID);
+
+
+
+
+for(element of elementsByTagName){
+  console.log(element);
+  element.innerHTML = "HELLO WORLDDDDD!"
+}
+
+console.log("ELEMENTS BY CLASS NAME");
+console.log(elementsByClassName);
+
+for(element of elementsByClassName){
+  console.log(element);
+  element.innerHTML = "HIIII!"
+}
+
+elementByID.innerHTML = "date"+Date();
+//Creating elements:
+
+let newElement = document.createElement("h1")
+
+let ogText;
+elementByID.addEventListener("click",() => {
+  ogText = elementByID.innerHTML
+  elementByID.innerHTML = "You just clicked me! Click me again to go back"
+});
+
+// elementByID.addEventListener("click",() => elementByID.innerHTML = ogText);
+// document.getElementsByTagName("p").addEventListener("click")
+
+
+
+
+//How about APIs???
+/*
+  The Fetch API interface allows web browser to make HTTP requests to web servers.
+
+  The traditional syntax is as follows:
+  fetch(URL);
+  .then(response => {LO QUE SE DEBE REALIZAR PARA MANEJAR LA PROMESA. EJM: response.json()})  //Genera el primer JSON
+  .then(data =>{GUARDAR LOS DATOS EN MEMORIA})  //Usa lo retornado por el primer the       
+  //To handle the promise return by the fetch call, it is used to process the response and work with returned data
+  .catch(console.error)
+*/
+
+//IIEF
+( function(){
+
+  const URL = "https://swapi.dev/api/people/";
+
+  //Fetch
+  fetch(URL)
+  .then(response => response.json())
+  .then(data => {
+    let names = data["results"]
+    let ul = document.getElementById("ul");
+    for(innerData of names){
+      //Creating an il element
+      let li = document.createElement("li");
+      li.textContent = innerData["name"];
+      ul.appendChild(li)
+    }
+  })
+  .catch(console.error)
+
+}
+
+)()
