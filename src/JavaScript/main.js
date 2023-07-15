@@ -219,6 +219,7 @@ function removeNegatives(array, callback) {
 /*
 Asynchronous???
 Functions running in parallel with other functions are called asynchronous
+Like threads?
 */
 
 
@@ -281,27 +282,66 @@ elementByID.addEventListener("click",() => {
   //To handle the promise return by the fetch call, it is used to process the response and work with returned data
   .catch(console.error)
 */
-
-//IIEF
-( function(){
-
-  const URL = "https://swapi.dev/api/people/";
-
-  //Fetch
+let xmlFetch = () =>{
+  
+  let PROXY = 'https://cors-anywhere.herokuapp.com/';
+  let URL = PROXY+'https://www.inocar.mil.ec/mareas/consultan.php';
   fetch(URL)
-  .then(response => response.json())
-  .then(data => {
-    let names = data["results"]
-    let ul = document.getElementById("ul");
-    for(innerData of names){
-      //Creating an il element
-      let li = document.createElement("li");
-      li.textContent = innerData["name"];
-      ul.appendChild(li)
-    }
-  })
-  .catch(console.error)
+  .then(response => response.text)
+  .then(data =>{
+    //Parseamos esa data
+    console.log(data);
+    const parser = new DOMParser()
+    const xml = parser.parseFromString(data,'text/html');
+    console.log(xml);
 
+    let contenedorMareas = xml.getElementsByClassName('container-fluid')[0];
+
+    //Colocando dentro del contenedor
+    let contenedorHTML = document.getElementById("container");
+    contenedorHTML.innerHTML = contenedorMareas.innerHTML;
+  })
+}
+console.log("#############################");
+
+let final = () =>{
+  let div1 = document.createElement('div')
+  div1.className = "caca"
+  let p =document.createElement('p');
+  p.textContent= 'awdawdwad'
+  div1.appendChild(p)
+  document.getElementById("cont-1").appendChild(div1)
 }
 
-)()
+//IIEF
+(function(){
+
+  final()
+  let swapi = localStorage.getItem('swapi')
+  if(swapi==null){
+    const URL = "https://swapi.dev/api/people/";
+    //Fetch
+    fetch(URL)
+    .then(response => response.json())  //Always use this whenever extracting data from a JSON
+    .then(data => {
+      console.log(data);
+      let names = data["results"]
+      let ul = document.getElementById("ul");
+      for(innerData of names){
+        //Creating an il element
+        let li = document.createElement("li");
+        li.textContent = innerData["name"];
+        ul.appendChild(li)
+      }
+      localStorage.setItem('swapi',JSON.stringify(data))
+    })
+    .catch(console.error)
+  }else{
+    //The element is already in memory, so we just load it!
+    // load(JSON.parse(swapi))
+  }
+  // xmlFetch()
+})()
+
+
+
