@@ -3,7 +3,10 @@ function App() {
   //Then we just return the created component inside a macro component
   return (
     <div>
-      <ListGroup></ListGroup>
+      <ListGroup
+        items={["Python", "Java", "JavaScript", "C", "C++", "GDScript"]}
+        heading="Programming Languages"
+      ></ListGroup>
     </div>
   );
 }

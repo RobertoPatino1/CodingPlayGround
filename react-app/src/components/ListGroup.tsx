@@ -1,11 +1,25 @@
-function ListGroup() {
-  const items = ["Python", "Java", "JavaScript", "C", "C++", "GDScript"];
+import { useState } from "react";
+
+function ListGroup(props: ListGroupProps) {
+  const [selectedIndex, setSelectedIndex] = useState(-1);
+
   return (
     <>
-      <h1>List Group of elements!!!</h1>
+      <h1>{props.heading}</h1>
+      {props.items.length === 0 && <p>No items were found</p>}
       <ul className="list-group">
-        {items.map((item) => (
-          <li key={item}>{item}</li>
+        {props.items.map((item, index) => (
+          <li
+            className={
+              selectedIndex === index
+                ? "list-group-item active"
+                : "list-group-item"
+            }
+            key={item}
+            onClick={() => setSelectedIndex(index)}
+          >
+            {item}
+          </li>
         ))}
       </ul>
     </>
