@@ -16,7 +16,8 @@ function ListGroup(props: ListGroupProps) {
                 : "list-group-item"
             }
             key={item}
-            onClick={() => setSelectedIndex(index)}
+            onMouseEnter={() => setSelectedIndex(index)}
+            onMouseLeave={() => setSelectedIndex(-1)}
           >
             {item}
           </li>
